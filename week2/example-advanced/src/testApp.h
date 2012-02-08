@@ -34,5 +34,7 @@ public:
 	ofVec3f srcOrientation;
 	ofMatrix4x4 srcRotationMatrix;
     vector<ofVec2f> srcPoints;
+    
+    ofPolyline mouth;
 
 };

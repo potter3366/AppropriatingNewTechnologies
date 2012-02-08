@@ -12,7 +12,12 @@ void testApp::setup() {
 
     //face tracking on source
     srcTracker.setup();
-    srcimg.loadImage("trump2.jpg");
+    srcTracker.setIterations(25);
+    srcTracker.setAttempts(4);
+    srcTracker.setClamp(4);
+    srcTracker.setTolerance(.01);
+    
+    srcimg.loadImage("angel.jpg");
     srcTracker.update(toCv(srcimg));
     srcPosition = srcTracker.getPosition();
     srcScale = srcTracker.getScale();
@@ -40,6 +45,8 @@ void testApp::draw() {
     srcTracker.getObjectMesh().drawWireframe();
     //srcTracker.draw();
     
+    
+    
 	cam.draw(0, 0, 128, 96);
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
 
@@ -47,6 +54,21 @@ void testApp::draw() {
         ofSetLineWidth(1);
         //tracker.draw();
         
+        //draw mouth as black
+        mouth = srcTracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH);
+        mouth.setClosed(true);
+        ofPushStyle();
+        ofFill();
+        ofSetColor(60,0,0);
+        ofBeginShape();
+        for(int i =0; i<mouth.size(); i++){
+            ofVertex(mouth[i]);
+        }
+        ofEndShape();
+        mouth.draw();
+        ofPopStyle();
+        
+        //get face points and map it onto source image
         ofMesh camMesh = destTracker.getObjectMesh();
         camMesh.clearTexCoords();
         camMesh.addTexCoords(srcPoints);

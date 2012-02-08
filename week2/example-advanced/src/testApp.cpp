@@ -13,9 +13,9 @@ void testApp::setup() {
     //face tracking on source
     srcTracker.setup();
     srcTracker.setIterations(25);
-    srcTracker.setAttempts(4);
+    srcTracker.setAttempts(2);
     srcTracker.setClamp(4);
-    srcTracker.setTolerance(.01);
+    srcTracker.setTolerance(1);
     
     srcimg.loadImage("angel.jpg");
     srcTracker.update(toCv(srcimg));
@@ -54,19 +54,6 @@ void testApp::draw() {
         ofSetLineWidth(1);
         //tracker.draw();
         
-        //draw mouth as black
-        mouth = srcTracker.getImageFeature(ofxFaceTracker::OUTER_MOUTH);
-        mouth.setClosed(true);
-        ofPushStyle();
-        ofFill();
-        ofSetColor(60,0,0);
-        ofBeginShape();
-        for(int i =0; i<mouth.size(); i++){
-            ofVertex(mouth[i]);
-        }
-        ofEndShape();
-        mouth.draw();
-        ofPopStyle();
         
         //get face points and map it onto source image
         ofMesh camMesh = destTracker.getObjectMesh();
@@ -81,6 +68,21 @@ void testApp::draw() {
         ofDrawAxis(scale);
         camMesh.draw();
         srcimg.getTextureReference().unbind();
+        
+        
+        //draw inside of mouth
+        mouth = destTracker.getObjectFeature(ofxFaceTracker::INNER_MOUTH);
+        mouth.setClosed(true);
+        ofPushStyle();
+        ofFill();
+        ofSetColor(60,0,0);
+        ofBeginShape();
+        for(int i =0; i<mouth.size(); i++){
+            ofVertex(mouth[i]);
+        }
+        ofEndShape(true);
+        mouth.draw();
+        ofPopStyle();
     }
 
     

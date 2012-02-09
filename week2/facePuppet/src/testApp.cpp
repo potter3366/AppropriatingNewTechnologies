@@ -54,7 +54,7 @@ void testApp::draw() {
     
     if(destTracker.getFound()) {
         ofSetLineWidth(1);
-        //destTracker.draw();
+        destTracker.draw();
         
         
         //get face points and map it onto source image

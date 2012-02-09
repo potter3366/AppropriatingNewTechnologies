@@ -26,6 +26,8 @@ public:
 	
 	ofEasyCam easyCam;
 
+    bool videoThumb;
+    
     //src image to modify
     ofImage srcimg;
     ofxFaceTracker srcTracker;

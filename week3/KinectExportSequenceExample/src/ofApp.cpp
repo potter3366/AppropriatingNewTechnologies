@@ -23,7 +23,7 @@ void ofApp::update() {
 					img.setColor(x, y, ofColor(color, depth.getBrightness()));
 				}
 			}
-			img.saveImage("out"+ofToString(snapCounter)+".tiff");
+			img.saveImage("8out"+ofToString(snapCounter)+".tiff");
             snapCounter++;
 		}
 	}

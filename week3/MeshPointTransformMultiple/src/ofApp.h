@@ -7,20 +7,20 @@ public:
 	void setup();
 	void update();
 	void draw();
+    void keyReleased(int key);
 	void loadNewReference();
     
 	ofEasyCam cam;
 	ofMesh mesh;
     
     ofMesh referenceMesh;
-    bool referenceSwitch;
     
     float distort;
     ofImage img1;
     ofImage img2;
-    ofImage img3;
     ofColor cur1;
     ofColor cur2;
-    ofColor cur3;
     
+    int indexImage;
+    string indexImageText;
 };

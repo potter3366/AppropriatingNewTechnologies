@@ -3,8 +3,7 @@
 void ofApp::setup() {
 	ofSetVerticalSync(true);
 	img1.loadImage("linzer1.png");
-    img3.loadImage("linzer3.png");
-    referenceSwitch = false;
+    indexImage = 1;
     
 	mesh.setMode(OF_PRIMITIVE_POINTS);
     referenceMesh.setMode(OF_PRIMITIVE_POINTS);
@@ -42,7 +41,6 @@ void ofApp::update() {
             point*=1.001;
             point+=ofVec3f(ofRandomf(), ofRandomf(), ofRandomf());
             mesh.setVertex(i, point);
-            referenceSwitch = true;
         }
     }
     if(ofGetKeyPressed('2')) {
@@ -70,13 +68,26 @@ void ofApp::draw() {
 	cam.end();
 }
 
+void ofApp::keyReleased(int key){
+
+    if(key == '1'){
+        if(indexImage<3){
+            indexImage++;
+        }else{
+            indexImage = 1;
+        }
+    loadNewReference();
+    }
+}
+
 
 void ofApp::loadNewReference(){
-    
-    img2.loadImage("linzer2.png");
-    printf("loaded image\n");
+    //cout << "index Image: " << indexImage << endl;
+    indexImageText = "linzer" + ofToString(indexImage) + ".png";
+    img2.loadImage(indexImageText);
     
     referenceMesh.setMode(OF_PRIMITIVE_POINTS);
+    referenceMesh.clear();
 	for(int y = 0; y < img2.getHeight(); y++) {
 		for(int x = 0; x < img2.getWidth(); x++) {
             cur2 = img2.getColor(x, y);

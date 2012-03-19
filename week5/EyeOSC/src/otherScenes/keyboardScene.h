@@ -32,15 +32,15 @@ public:
 	void setup();
 	void update(float mouseX, float mouseY);
 	void draw();
-	void printMessageHistory();
 	
 	buttonTrigger	doneButton;
-	
-	bool bSpeakWords;
-	
+
 	
 	vector <buttonTrigger> letterButtons;
 	string * buttons;
+    ofRectangle * bounds;
+    string test;
+    
 	vector <string> letterButtons_lower;
 	vector<string> triggeredMessageLog;
 	vector<int> triggeredKeyCodes;
@@ -49,12 +49,14 @@ public:
 	string displayMessage;
 	int carriageReturnCounter;
 	
-	ofTrueTypeFont  franklinBook;
-	ofTrueTypeFont  franklinBookSmall;
-	ofTrueTypeFont	verdana;
-	ofTrueTypeFont  franklinBookLarge;
-	bool shiftOn;
+	ofTrueTypeFont  gothamUltra;
+	ofTrueTypeFont  gothamUltraKeys;
+    string layedoutmessage;
 	
+    float mouseX;
+    float mouseY;
+    float scaleNum;
+    
 private:
 	void typedMessage(string msg);
 	

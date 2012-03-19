@@ -6,8 +6,9 @@ void testApp::setup(){
 	ofSetVerticalSync(true);
 	ofSetFrameRate(60);
     
-	mode = MODE_TRACKING;
-	
+//	mode = MODE_TRACKING;
+	mode = MODE_KEYBOARD;
+    
 	eyeSmoothed.set(0,0,0);
 	
 	TM.setup();
@@ -107,6 +108,9 @@ void testApp::draw(){
 	
 	ofSetColor(0);
 	ofDrawBitmapString("FrameRate: " + ofToString((int) ofGetFrameRate()), 1, ofGetHeight() - 20);
+
+    
+
 }
 
 //--------------------------------------------------------------

@@ -86,6 +86,7 @@
 		449E42F714F0D12100376C17 /* Tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449E426D14F0D11E00376C17 /* Tracker.cpp */; };
 		449E42F814F0D12100376C17 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449E426E14F0D11E00376C17 /* Utilities.cpp */; };
 		449E42F914F0D12100376C17 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449E426F14F0D11E00376C17 /* Wrappers.cpp */; };
+		B203F0F41516A73800C711FF /* keyboardScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B203F0F31516A73800C711FF /* keyboardScene.cpp */; };
 		B230A1491506D96C00004871 /* osc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B230A1481506D96C00004871 /* osc.a */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -403,6 +404,8 @@
 		449E426E14F0D11E00376C17 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		449E426F14F0D11E00376C17 /* Wrappers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wrappers.cpp; sourceTree = "<group>"; };
 		449E427214F0D11E00376C17 /* ofxCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCv.h; sourceTree = "<group>"; };
+		B203F0F11516A6E000C711FF /* keyboardScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboardScene.h; sourceTree = "<group>"; };
+		B203F0F31516A73800C711FF /* keyboardScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboardScene.cpp; sourceTree = "<group>"; };
 		B230A1481506D96C00004871 /* osc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = osc.a; path = ../../../addons/ofxOsc/libs/oscpack/lib/osx/osc.a; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -726,6 +729,8 @@
 				449E3F7F14F0CD0100376C17 /* speak.m */,
 				449E3F8014F0CD0100376C17 /* typingScene.cpp */,
 				449E3F8114F0CD0100376C17 /* typingScene.h */,
+				B203F0F11516A6E000C711FF /* keyboardScene.h */,
+				B203F0F31516A73800C711FF /* keyboardScene.cpp */,
 			);
 			path = otherScenes;
 			sourceTree = "<group>";
@@ -1472,6 +1477,7 @@
 				2709B2261500BE0C00FA5898 /* ofxOscMessage.cpp in Sources */,
 				2709B2271500BE0C00FA5898 /* ofxOscReceiver.cpp in Sources */,
 				2709B2281500BE0C00FA5898 /* ofxOscSender.cpp in Sources */,
+				B203F0F41516A73800C711FF /* keyboardScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

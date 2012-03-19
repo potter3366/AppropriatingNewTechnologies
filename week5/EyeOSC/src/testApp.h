@@ -8,17 +8,19 @@
 
 #include "buttonTrigger.h"
 #include "typingScene.h"
+#include "keyboardScene.h"
 #include "pongScene.h"
 #include "eyePlotterTestApp.h"
 #include "ofxOsc.h"
 
-static const int num_modes = 5;
+static const int num_modes = 6;
 
 enum{
 	MODE_TRACKING,
 	MODE_TEST,
 	MODE_DRAW,
 	MODE_TYPING,
+    MODE_KEYBOARD,
 	MODE_PONG,
 };
 
@@ -43,6 +45,7 @@ class testApp : public ofBaseApp{
 		buttonTrigger		BT;
 		eyePlotterTestApp	eyeApp;
 		typingScene			typeScene;
+        keyboardScene       keyScene;
 		pongScene			ponger;
 		
 		ofPoint eyeSmoothed, eyeRaw;

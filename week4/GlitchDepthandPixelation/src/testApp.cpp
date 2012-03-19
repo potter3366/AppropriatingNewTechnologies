@@ -21,35 +21,39 @@ void testApp::setup() {
 	bDrawPointCloud = false;
     
     curFrame.allocate(kinect.width, kinect.height, OF_IMAGE_COLOR);
+    scale = 4;
+    cols = ofGetWindowWidth()/scale;
+    rows = ofGetWindowHeight()/scale;
 }
 
 
 
 void testApp::update() {
-	ofBackground(100, 100, 100);
+	ofBackground(0, 0, 0);
 	
 	kinect.update();
 	if(kinect.isFrameNew()) {		
         
-        
         ofPixels& depthPixels = kinect.getDepthPixelsRef();
         ofPixels& colorPixels = kinect.getPixelsRef();
-        
-        for (int x = 0; x < 640; x++) {
-            for (int y = 0; y < 480; y++) {
-                int loc = x + y*640;
+
+        for (int i= 0; i < 640; i++) {
+            for (int j = 0; j < 480; j++) {
                 
-                ofColor color = colorPixels.getColor(x, y);
-                ofColor depth = depthPixels.getColor(x, y);
+                 color = colorPixels.getColor(i, j);
+                 depth = depthPixels.getColor(i, j);
                 
-                if(depth.getBrightness() > mouseX){
-                    curFrame.setColor(x, y, ofRandom(0,255));
+                if(depth.getBrightness() < mouseX){
+                    curFrame.setColor(i, j, color);
                 }else{
-                    curFrame.setColor(x, y, color);
+                    ofSetColor(curColor);
+                    ofRect(x+ofRandom(-10,10),y+ofRandom(-10,10),scale,scale);
                 }
+                
                 
             }
         }
+        
 	}
     curFrame.update();
 }
@@ -57,13 +61,7 @@ void testApp::update() {
 
 
 void testApp::draw() {
-	
-	ofSetColor(255, 255, 255);
-    
-    curFrame.draw(0,0,640,480);//modified image
-    kinect.drawDepth(0, 480, 400, 300);//depth
-    kinect.draw(640, 0, 400, 300);//rgb
-	
+    curFrame.draw(0,0,640,480);//modified image	
 }
 
 

@@ -13,6 +13,7 @@ void testApp::setup(){
 	TM.setup();
 	typeScene.setup();
 	eyeApp.setup();
+    keyScene.setup();
 	ponger.setup();
 	
 	BT.setup("catch me!", 50,50,180,180);
@@ -56,9 +57,15 @@ void testApp::update() {
 		typeScene.update(eyeSmoothed.x, eyeSmoothed.y);
 	}
 	
+    if (mode == MODE_KEYBOARD){
+		keyScene.update(eyeSmoothed.x, eyeSmoothed.y);
+	}
+    
 	if (mode == MODE_PONG){
 		ponger.update(eyeSmoothed.x, eyeSmoothed.y);
 	}
+    
+
 	
 	if(newFrame) {
 		ofxOscMessage msg;
@@ -84,6 +91,7 @@ void testApp::draw(){
 	if (mode == MODE_TEST)		BT.draw();
 	if (mode == MODE_DRAW )		eyeApp.draw();
 	if (mode == MODE_TYPING)	typeScene.draw();
+    if (mode == MODE_KEYBOARD)	keyScene.draw();
 	if (mode == MODE_PONG)		ponger.draw();
 	
 	// draw a green dot to see how good the tracking is:

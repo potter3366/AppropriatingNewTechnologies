@@ -15,8 +15,8 @@ extern  int buttonCount;
 //--------------------------------------------------------------
 void keyboardScene::setup(){
     
-	gothamUltra.loadFont("fonts/GothamUltra.ttf", 60);
-	gothamUltraKeys.loadFont("fonts/GothamUltra.ttf", 60);
+	gothamUltra.loadFont("fonts/ProFontWindows.ttf", 60);
+	gothamUltraKeys.loadFont("fonts/ProFontWindows.ttf", 60);
 	carriageReturnCounter = 0;
 
 	ofBackground(255, 255, 255);
@@ -49,10 +49,11 @@ void keyboardScene::setup(){
     buttons[24] = "Y";
     buttons[25] = "Z";
     
-    test = "A"; //ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    test = "I"; //ABCDEFGHIJKLMNOPQRSTUVWXYZ
     scaleNum = 0.4;
     
     bounds = new ofRectangle[26];
+    enlarge = false;
 //	{
 //		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
 //		"K", "L", "M", "N", "O", "P", "Q", "R", "S", 
@@ -89,6 +90,7 @@ void keyboardScene::setup(){
 	my = 0.0; 
 	mouseX = 0.0;
     mouseY = 0.0;
+
 }
 
 
@@ -98,29 +100,8 @@ void keyboardScene::update(float mouseX, float mouseY){
 	mx = mouseX;
 	my = mouseY;
 	
-    for (int i=0; i<26; i++) {
-        bounds[i] = gothamUltraKeys.getStringBoundingBox(buttons[i], 0, 0);
-    }
-
 
     
-	for(int i = 0; i < letterButtons.size(); i++) {
-		letterButtons[i].setMaxCounter(buttonCount);
-		if(letterButtons[i].update(mx, my)) {
-			if ((carriageReturnCounter == 32)|(carriageReturnCounter == 31)) {
-			}
-			else if (letterButtons[i].displayText == "SPACE"){
-
-				displayMessage.push_back(' ');
-				carriageReturnCounter++;
-			}
-			else {
-                displayMessage.push_back(letterButtons[i].displayText.c_str()[0]);
-			}
-		}
-		
-	}
-	
 
 	
 }	
@@ -129,6 +110,10 @@ void keyboardScene::update(float mouseX, float mouseY){
 void keyboardScene::draw(){
     mouseX = ofGetMouseX();
     mouseY = ofGetMouseY();
+    
+    
+
+    
     
 	ofPushStyle();	
 	
@@ -142,75 +127,114 @@ void keyboardScene::draw(){
 //    verdana14A.drawString(scaleA, -bounds.width/2, bounds.height/2 );
 //	ofPopMatrix();
     
+
+    
     
 //    ofPushMatrix();
 //    ofPushStyle();
 //    ofSetRectMode(OF_RECTMODE_CENTER);
-//    ofRectangle bounds = gothamUltraKeys.getStringBoundingBox(test, 0, 0);
+//    ofRectangle bounds = gothamUltraKeys.getStringBoundingBox(buttons[1], 0, 0);
 //    ofTranslate(500, 500, 0);    
-//    if(mouseX > 500-bounds.width/2 && mouseX < 500+bounds.width/2 && mouseY> 500-bounds.height/2+bounds.y/2 && mouseY< 500+bounds.height/2+bounds.y/2){
-//        ofScale(scaleNum, scaleNum);
-//        scaleNum+=0.1;
-//        if(scaleNum >= 1.0){
-//            scaleNum=1.0;
-//        }
-//    }else{
-//        ofScale(scaleNum, scaleNum);
-//        scaleNum-=0.2;
-//        if(scaleNum <= 0.4){
-//            scaleNum=0.4;
-//        }
-//    }
+////    if(mouseX > 500-bounds.width/2 && mouseX < 500+bounds.width/2 && mouseY> 500-bounds.height/2+bounds.y/2 && mouseY< 500+bounds.height/2+bounds.y/2){
+////        ofScale(scaleNum, scaleNum);
+////        scaleNum+=0.1;
+////        if(scaleNum >= 1.0){
+////            scaleNum=1.0;
+////        }
+////    }else{
+////        ofScale(scaleNum, scaleNum);
+////        scaleNum-=0.2;
+////        if(scaleNum <= 0.4){
+////            scaleNum=0.4;
+////        }
+////    }
 //    
-//    //ofSetColor(255, 0, 0);
-//    //ofRect(bounds.x, bounds.y+bounds.height/2, bounds.width, bounds.height);
+//
+//    ofSetColor(255, 0, 0);
+//    ofRect(bounds.x, bounds.y+bounds.height/2, bounds.width, bounds.height);
+////    for(int i=0; i<26; i++){
 //    ofSetColor(255);
-//    gothamUltraKeys.drawString(buttons[0], -bounds.width/2, bounds.height/2+bounds.y/2);
+//        gothamUltraKeys.drawString(buttons[1], -bounds.width/2, bounds.height/2+bounds.y/2);
+////    }
 //    ofPopStyle();
 //    ofPopMatrix();
+    
+
+    
+
+//    ofPushMatrix();
+//    ofPushStyle();
+//    ofSetRectMode(OF_RECTMODE_CENTER);
+//    ofTranslate(0, 500, 0);   
+//    
+//    int fontX = 0;
+//    int padding = 5;
+//
+//    for (int i=0; i<26; i++) {
+//        bounds[i] = gothamUltraKeys.getStringBoundingBox(buttons[i], 0, 0);
+//        
+//        if(mouseX > 0-bounds[i].width/2 && mouseX < 0+bounds[i].width/2 && mouseY > 500-bounds[i].height/2 && mouseY <  500+bounds[i].height/2){
+//            ofScale(scaleNum, scaleNum);
+//            scaleNum+=0.004;
+//            if(scaleNum >= 1.0){
+//                scaleNum=1.0;
+//            }
+//        }else{
+//            ofScale(scaleNum, scaleNum);
+//            scaleNum-=0.01;
+//            if(scaleNum <= 0.4){
+//                scaleNum=0.4;
+//            }
+//        }
+//        
+//        //cout << "w: " << bounds[i].width << " x: " << fontX << endl;  
+//        cout << enlarge << endl;
+//        
+//        fontX+= bounds[i].width/2;
+//        
+//        ofSetColor(255, 0, 0);
+//        ofRect(fontX, bounds[i].y+bounds[i].height/2, bounds[i].width, bounds[i].height);
+//        
+//        ofSetColor(255);
+//        gothamUltraKeys.drawString(buttons[i], fontX-bounds[i].width/2, bounds[i].height/2+bounds[i].y/2);
+//
+//        fontX += bounds[i].width/2 + padding;
+//
+//    }
+//    ofPopStyle();
+//    ofPopMatrix();
+    
+    
+
+    
     
     ofPushMatrix();
     ofPushStyle();
     ofSetRectMode(OF_RECTMODE_CENTER);
-    for (int i=4; i<26; i++) {
+    ofTranslate(0, 500, 0);   
+    
+    int fontX = 0;
+    int padding = 5;
+
+    for (int i=0; i<26; i++) {
+        bounds[i] = gothamUltraKeys.getStringBoundingBox(buttons[i], 0, 0);
         
-        ofTranslate(500, 500, 0);    
-        if(mouseX > 500-bounds[i].width/2 && mouseX < 500+bounds[i].width/2 && mouseY> 500-bounds[i].height/2+bounds[i].y/2 && mouseY< 500+bounds[i].height/2+bounds[i].y/2){
-            ofScale(scaleNum, scaleNum);
-            scaleNum+=0.1;
-            if(scaleNum >= 1.0){
-                scaleNum=1.0;
-            }
-        }else{
-            ofScale(scaleNum, scaleNum);
-            scaleNum-=0.2;
-            if(scaleNum <= 0.4){
-                scaleNum=0.4;
-            }
-        }
+        fontX+= bounds[i].width/2;
+        
+        ofSetColor(255, 0, 0);
+        ofRect(fontX, bounds[i].y+bounds[i].height/2, bounds[i].width, bounds[i].height);
+        
         ofSetColor(255);
-        gothamUltraKeys.drawString(buttons[i], -bounds[i].width/2, bounds[i].height/2+bounds[i].y/2);
+        gothamUltraKeys.drawString(buttons[i], fontX-bounds[i].width/2, bounds[i].height/2+bounds[i].y/2);
+
+        fontX += bounds[i].width/2 + padding;
+
     }
     ofPopStyle();
-    ofPopMatrix();    
+    ofPopMatrix();
+
     
-    
-    
-//	float xStart  = 15;	
-//	for (int i = 0; i < 26; i++){
-//        ofPushMatrix();
-//            if(my>400){
-//                ofScale(1.3, 1.3);
-//            }
-//            gothamUltraSmall.drawString(buttons[i], xStart, 500);	
-//            xStart += 49;
-//        ofPopMatrix();
-//	}
-//    
-//	for(int i = 0; i < letterButtons.size(); i++){
-//		letterButtons[i].draw();
-//	}
-    
+
     
     
     
@@ -258,4 +282,10 @@ void keyboardScene::draw(){
 	//drawCursor();
 }
 
-
+void keyboardScene::rollover(int mx, int my, int x, int width){
+    if(mx > x-width && mx < x+width && my > 500){
+        enlarge = true;
+    }else{
+        enlarge = false;
+    }
+}

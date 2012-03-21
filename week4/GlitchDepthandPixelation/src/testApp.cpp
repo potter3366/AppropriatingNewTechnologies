@@ -21,7 +21,7 @@ void testApp::setup() {
 	bDrawPointCloud = false;
     
     curFrame.allocate(kinect.width, kinect.height, OF_IMAGE_COLOR);
-    scale = 4;
+    scale = 8;
     cols = ofGetWindowWidth()/scale;
     rows = ofGetWindowHeight()/scale;
 }
@@ -30,38 +30,44 @@ void testApp::setup() {
 
 void testApp::update() {
 	ofBackground(0, 0, 0);
-	
-	kinect.update();
-	if(kinect.isFrameNew()) {		
-        
-        ofPixels& depthPixels = kinect.getDepthPixelsRef();
-        ofPixels& colorPixels = kinect.getPixelsRef();
+	scale = mouseY;
 
-        for (int i= 0; i < 640; i++) {
-            for (int j = 0; j < 480; j++) {
-                
-                 color = colorPixels.getColor(i, j);
-                 depth = depthPixels.getColor(i, j);
-                
-                if(depth.getBrightness() < mouseX){
-                    curFrame.setColor(i, j, color);
-                }else{
-                    ofSetColor(curColor);
-                    ofRect(x+ofRandom(-10,10),y+ofRandom(-10,10),scale,scale);
-                }
-                
-                
-            }
-        }
-        
-	}
-    curFrame.update();
 }
 
 
 
 void testApp::draw() {
     curFrame.draw(0,0,640,480);//modified image	
+    
+    kinect.update();
+	if(kinect.isFrameNew()) {		
+        
+        ofPixels& depthPixels = kinect.getDepthPixelsRef();
+        ofPixels& colorPixels = kinect.getPixelsRef();
+        
+
+            for (int i= 0; i < 640; i++) { //glitch vid pixel loop
+                for (int j = 0; j < 480; j++) { //glitch vid pixel loop
+                    
+                    color = colorPixels.getColor(i, j);
+                    depth = depthPixels.getColor(i, j);
+                    
+                    if(depth.getBrightness() < mouseX){
+                        curFrame.setColor(i, j, color);
+                    }else{
+                        ofFill();
+                        ofSetColor(color);
+                        ofRect(i+ofRandom(-10,10),j+ofRandom(-10,10),scale,scale);
+                    }
+                    
+                    
+                }
+            }
+        
+	}
+    curFrame.update();
+    
+
 }
 
 

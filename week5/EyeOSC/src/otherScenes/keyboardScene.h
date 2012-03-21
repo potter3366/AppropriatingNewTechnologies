@@ -32,6 +32,7 @@ public:
 	void setup();
 	void update(float mouseX, float mouseY);
 	void draw();
+    void rollover(int mx, int my, int x, int width);
 	
 	buttonTrigger	doneButton;
 
@@ -56,6 +57,8 @@ public:
     float mouseX;
     float mouseY;
     float scaleNum;
+    bool enlarge;
+    
     
 private:
 	void typedMessage(string msg);

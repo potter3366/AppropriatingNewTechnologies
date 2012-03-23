@@ -16,7 +16,7 @@ extern  int buttonCount;
 void keyboardScene::setup(){
     
 	gothamUltra.loadFont("fonts/HandTIMES.ttf", 20);
-	gothamUltraKeys.loadFont("fonts/HandTIMES.ttf", 68);
+	gothamUltraKeys.loadFont("fonts/HandTIMES.ttf", 48);
 	carriageReturnCounter = 0;
 
 	ofBackground(255, 255, 255);
